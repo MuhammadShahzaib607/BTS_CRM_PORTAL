@@ -1,4 +1,4 @@
-import Lead from "../models/LeadsSchema";
+import Lead from "../models/LeadsSchema.js";
 import { formatDate } from "../utils/formatedDate.js";
 import { sendRes } from "../utils/responseHandler.js";
 

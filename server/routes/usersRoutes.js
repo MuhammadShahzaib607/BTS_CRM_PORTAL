@@ -13,7 +13,7 @@ const router = express.Router()
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/check-token", checkToken);
-router.get("/user/:id", verifyToken, getSingleUser)
-router.get("/all-users", verifyToken, getAllUsers)
+router.get("/single:id", verifyToken, getSingleUser)
+router.get("/all-users/:id", verifyToken, getAllUsers)
 
 export default router;

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 import User from "../models/UsersSchema.js";
+import { sendRes } from "../utils/responseHandler.js";
 
 dotenv.config()
 
@@ -134,16 +135,25 @@ const getSingleUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const requester = await User.findById(req.user._id);
+        const requesterId = req.user._id;
+
+        if (!requesterId) {
+            return sendRes(res, 400, false, "Admin ID is required in params");
+        }
+
+        const requester = await User.findById(requesterId);
 
         if (!requester || !requester.isAdmin) {
             return sendRes(res, 403, false, "Access denied. Only admins can hit this API");
         }
 
         const users = await User.find().select("username email date _id isAdmin");
+        
         sendRes(res, 200, true, "All users fetched", users);
+
     } catch (error) {
-        sendRes(res, 500, false, "Internal server error");
+        console.error("Error in getAllUsers:", error.message);
+        sendRes(res, 500, false, error.message);
     }
 }
 
