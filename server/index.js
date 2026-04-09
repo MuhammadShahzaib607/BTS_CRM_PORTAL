@@ -23,7 +23,7 @@ app.get("/health_check", (req, res)=> {
     sendRes(res, 200, true, "Ok")
 })
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'NODE_ENV') {
     const port = process.env.PORT || 8000;
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
