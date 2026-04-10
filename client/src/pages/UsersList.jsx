@@ -151,9 +151,11 @@ const user = JSON.parse(localStorage.getItem("user"))
                                         />
                                     </div>
 
-                                    {/* <button className="w-full py-4 bg-slate-900 text-white rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-indigo-600 transition-colors cursor-pointer group-hover:shadow-lg group-hover:shadow-indigo-200">
-                                        View Full Profile <ChevronRight size={14}/>
-                                    </button> */}
+                                    <button className="w-full py-4 bg-slate-900 text-white rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-indigo-600 transition-colors cursor-pointer group-hover:shadow-lg group-hover:shadow-indigo-200"
+                                    onClick={()=> navigate(`/user-lead/${user._id}`)}
+                                    >
+                                        View Leads Data <ChevronRight size={14}/>
+                                    </button>
                                 </motion.div>
                             );
                         })}

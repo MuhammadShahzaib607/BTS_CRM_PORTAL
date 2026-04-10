@@ -11,6 +11,10 @@ import EditLead from './pages/EditLead'
 import Profile from './pages/Profile'
 import AllLeads from './pages/AllLeads'
 import UsersList from './pages/UsersList'
+import PrivateRoutes from './routes/PrivateRoutes'
+import AuthRoutes from './routes/AuthRoutes'
+import AdminRoutes from './routes/AdminRoutes'
+import UserLead from './pages/UserLead'
 
 function App() {
 
@@ -18,21 +22,28 @@ function App() {
 
   return (
     <>
-    <Routes>
-      <Route path="/login" element={<Login />}/>
-      <Route path="/signup" element={<Signup />}/>
+      <Routes>
+        <Route element={<AuthRoutes />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Route>
 
-      <Route path="/" element={<Home />}/>
-      <Route path="/my-leads" element={<MyLeads />}/>
-      <Route path="/add-follow-up/:leadId" element={<AddFollowUp />}/>
-      <Route path="/edit-followup/:leadId/:followupId" element={<EditFollowUp />}/>
-      <Route path="/create-lead" element={<CreateLead />}/>
-      <Route path="/edit-lead/:leadId" element={<EditLead />}/>
-      <Route path="/profile" element={<Profile />}/>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/my-leads" element={<MyLeads />} />
+          <Route path="/add-follow-up/:leadId" element={<AddFollowUp />} />
+          <Route path="/edit-followup/:leadId/:followupId" element={<EditFollowUp />} />
+          <Route path="/create-lead" element={<CreateLead />} />
+          <Route path="/edit-lead/:leadId" element={<EditLead />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
-      <Route path="/all-leads" element={<AllLeads />}/>
-      <Route path="/all-users" element={<UsersList />}/>
-    </Routes>
+        <Route element={<AdminRoutes />}>
+          <Route path="/all-leads" element={<AllLeads />} />
+        <Route path="/all-users" element={<UsersList />} />
+        <Route path="/user-lead/:userId" element={<UserLead />} />
+        </Route>
+      </Routes>
     </>
   )
 }

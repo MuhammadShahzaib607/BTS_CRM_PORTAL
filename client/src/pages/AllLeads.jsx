@@ -22,7 +22,7 @@ const AllLeads = () => {
     // Unified Modal State
     const [confirmModal, setConfirmModal] = useState({ show: false, type: '', data: null });
 
-    const apiBaseUrl = import.meta.env.VITE_API_URL;
+    const apiBaseUrl = import.meta.env.VITE_API_URL
 
     // --- FETCH LEADS & USER DATA ---
     const fetchLeads = useCallback(async () => {
@@ -57,7 +57,7 @@ const AllLeads = () => {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     userMap[id] = res.data.data.username || 'Unknown';
-                    console.log(res.data.data)
+                    // console.log(res.data.data)
                 } catch {
                     userMap[id] = 'Ghost User';
                 }
